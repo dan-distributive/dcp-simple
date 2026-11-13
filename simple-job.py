@@ -22,10 +22,10 @@ job = dcp.compute_for(inputs, my_function, args)
 # Job config
 job.public.name = 'Simple demo'
 job.modules = ['numpy']
-job.computeGroups = [{'joinKey': 'tensparrows'}]
+job.computeGroups = [{'attachKey': 'tensparrows'}]
 for g in job.computeGroups:
-    if g.get("joinKey") != "public":
-        g["joinSecret"] = getpass(f"Enter join secret for compute group '{g['joinKey']}': ")
+    if g.get("attachKey") != "global":
+        g["attachSecret"] = getpass(f"Enter attach secret for compute group '{g['attachKey']}': ")
 
 # Event listeners
 job.on('accepted', lambda _: print(f"Job ID: {job.id}\nAwaiting results..."))
